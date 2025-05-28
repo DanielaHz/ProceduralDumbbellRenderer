@@ -1,0 +1,32 @@
+shader KnurlingDisplacementMultiZone2(
+    float scale = 1.0,
+    float frequency = 20.0,
+    float amplitude = 1.0,
+    float zone1_start = -0.9,
+    float zone1_end = -0.5,
+    float zone2_start = -0.2,
+    float zone2_end = 0.2,
+    float zone3_start = 0.5,
+    float zone3_end = 0.9,
+    float angle = 45.0,
+    output float resultF = 0.0
+)
+{
+    point pos = transform("object", P);
+    float x = pos[0];
+    float y = pos[1];
+
+    float angleRad = radians(angle);
+    float xr = cos(angleRad) * x - sin(angleRad) * y;
+    float yr = sin(angleRad) * x + cos(angleRad) * y;
+
+    float fade1 = smoothstep(zone1_start, zone1_start + 0.05, x) * (1.0 - smoothstep(zone1_end - 0.05, zone1_end, x));
+    float fade2 = smoothstep(zone2_start, zone2_start + 0.05, x) * (1.0 - smoothstep(zone2_end - 0.05, zone2_end, x));
+    float fade3 = smoothstep(zone3_start, zone3_start + 0.05, x) * (1.0 - smoothstep(zone3_end - 0.05, zone3_end, x));
+
+    float pattern1 = sin((xr + yr) * frequency) * sin((xr - yr) * frequency);
+    float pattern2 = cos((xr + yr) * frequency) * cos((xr - yr) * frequency);
+    float pattern3 = sin((xr - yr) * frequency) * cos((xr + yr) * frequency);
+
+    resultF = amplitude * scale * (pattern1 * fade1 + pattern2 * fade2 + pattern3 * fade3);
+}
