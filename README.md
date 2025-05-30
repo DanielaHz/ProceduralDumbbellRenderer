@@ -1,6 +1,6 @@
 # Procedural Rendering With Python and Renderman 
 
-Todo el devlook de la manucerna fue hecho de maenra procedural usando python and renderman.
+The project focuses on the development and implementation of custom shaders for the procedural rendering of a 3D dumbbell model, using the RenderMan renderingengine and the Python API
 
 ![image](/images/Dumbbell_1.png)
 
