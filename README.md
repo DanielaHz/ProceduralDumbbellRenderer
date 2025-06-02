@@ -1,5 +1,7 @@
 # Procedural Rendering With Python and Renderman 
 
+![image](clip.gif)
+
 The project focuses on the development and implementation of custom shaders for the procedural rendering of a 3D dumbbell model, using the RenderMan renderingengine and the Python API
 
 ![image](/images/Dumbbell_1.png)
